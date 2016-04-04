@@ -1,1 +1,2 @@
-echo "Autograde!"
+echo "Autograde!" > autograde.txt
+enscript -B autograde.txt -o - | ps2pdf - output.pdf
