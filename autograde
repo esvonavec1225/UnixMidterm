@@ -1,4 +1,10 @@
-echo "Autograde!" > autograde.txt
+echo "Eric Svonavec" > autograde.txt
+echo "eps8" >> autograde.txt
+echo "gcc house.c -o autogradec" >> autograde.txt
 cat house.c >> autograde.txt
+gcc house.c -o autogradec
+./testprogram ./autogradec 12 14 | grep -v "spawn ./autogradec" >> autograde.txt
+./testprogram ./autogradec 13 15 | grep -v "spawn ./autogradec" >> autograde.txt
+./testprogram ./autogradec 14 16 | grep -v "spawn ./autogradec" >> autograde.txt
 enscript --quiet -B --color=1 -Ec autograde.txt -p autograde.ps
 ps2pdf autograde.ps autograde.pdf
