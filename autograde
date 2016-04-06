@@ -1,2 +1,4 @@
 echo "Autograde!" > autograde.txt
-enscript -B autograde.txt -o - | ps2pdf - output.pdf
+cat house.c >> autograde.txt
+enscript --quiet -B --color=1 -Ec autograde.txt -p autograde.ps
+ps2pdf autograde.ps autograde.pdf
