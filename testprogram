@@ -1,0 +1,9 @@
+#!/usr/bin/expect
+
+spawn [lindex $argv 0]
+
+expect "Enter the width of the house (in feet):" {send "[lindex $argv 1]\r" }
+expect "Enter the depth of the house (in feet):" {send "[lindex $argv 2]\r" }
+
+interact
+
