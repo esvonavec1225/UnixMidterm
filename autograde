@@ -1,27 +1,3 @@
 #!/bin/bash
+ls -d $1*/ | xargs -L 1 ./testgrader
 
-find $1 -name "*.c"|while read fname; do
-	dir=$(dirname "$fname")
-	uanet=$(dirname "$fname" | rev | cut -d'/' -f1 | rev)
-	cat "$dir"/name.txt > "$uanet".txt
-	echo "$uanet" >> "$uanet".txt
-	echo "gcc "$dir"/house.c -o "$uanet"c" >> "$uanet".txt
-	cat "$dir"/house.c >> "$uanet".txt
-	gcc "$dir"/house.c -o "$uanet"c 2>> "$uanet".txt
-#	./testprogram ./"$uanet"c 2 4 | grep -v "spawn ./"$uanet"c" >> "$uanet".txt
-#	./testprogram ./"$uanet"c 6 8 | grep -v "spawn ./"$uanet"c" >> "$uanet".txt
-#	./testprogram ./"$uanet"c 10 12 | grep -v "spawn ./"$uanet"c" >> "$uanet".txt
-	enscript --quiet -B --color=1 -Ec "$uanet".txt -p "$uanet".ps
-	ps2pdf "$uanet".ps "$uanet".pdf
-done
-
-#echo "Eric Svonavec" > autograde.txt
-#echo "eps8" >> autograde.txt
-#echo "gcc house.c -o autogradec" >> autograde.txt
-#cat house.c >> autograde.txt
-#gcc house.c -o autogradec
-#./testprogram ./autogradec 12 14 | grep -v "spawn ./autogradec" >> autograde.txt
-#./testprogram ./autogradec 13 15 | grep -v "spawn ./autogradec" >> autograde.txt
-#./testprogram ./autogradec 14 16 | grep -v "spawn ./autogradec" >> autograde.txt
-#enscript --quiet -B --color=1 -Ec autograde.txt -p autograde.ps
-#ps2pdf autograde.ps autograde.pdf

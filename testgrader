@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir=$1
+uanet=$(echo "$dir" | rev | cut -d'/' -f2 | rev)
+cat "$dir"name.txt > "$uanet".txt
+echo "$uanet" >> "$uanet".txt
+echo "gcc "$dir"house.c -o "$uanet"c" >> "$uanet".txt
+cat "$dir"house.c >> "$uanet".txt
+gcc "$dir"house.c -o "$uanet"c 2>> "$uanet".txt
+./testprogram ./"$uanet"c 2 4 | grep -v "spawn ./"$uanet"c" >> "$uanet".txt
+./testprogram ./"$uanet"c 6 8 | grep -v "spawn ./"$uanet"c" >> "$uanet".txt
+./testprogram ./"$uanet"c 10 12 | grep -v "spawn ./"$uanet"c" >> "$uanet".txt
+enscript --quiet -B --color=1 -Ec "$uanet".txt -p "$uanet".ps
+ps2pdf "$uanet".ps "$uanet".pdf
+
