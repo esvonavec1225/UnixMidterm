@@ -1,3 +1,3 @@
 #!/bin/bash
-ls -d $1*/ | xargs -L 1 ./testgrader
+ls -d /home/collard/UniversityOfC/CSI/*/ | xargs -L 1 ./testgrader
 
